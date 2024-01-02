@@ -23,8 +23,7 @@ class Server:
 
         return self.__dataset
 
-    @staticmethod
-    def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
         '''
         Return a tuple of size 2 containing a start and end indexes
         corresponding to rangen of indexes to return.
@@ -40,6 +39,15 @@ class Server:
         return start_index, end_index
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        Get items for the given page number
+        Args:
+            page (int): page number
+            page_size (int): number of items per page
+        Returns:
+            (List[List]): a list of list(row) if inputs are within range
+            ([]) : an empty list if page and page_size are out of range
+        """
         assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
         start_index, end_index = self.index_range(page, page_size)
