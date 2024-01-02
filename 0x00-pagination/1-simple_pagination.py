@@ -23,7 +23,8 @@ class Server:
 
         return self.__dataset
 
-    def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
+    @staticmethod
+    def index_range(page: int, page_size: int) -> Tuple[int, int]:
         '''
         Return a tuple of size 2 containing a start and end indexes
         corresponding to rangen of indexes to return.
