@@ -14,7 +14,6 @@ class LIFOCache(BaseCaching):
             # Checks if key currently exists and deletes it with its value
             # to maintain LIFO order (so as to be readded with current value)
 
-
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 if key in self.cache_data.keys():
                     del self.cache_data[key]
