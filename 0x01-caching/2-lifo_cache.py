@@ -13,13 +13,15 @@ class LIFOCache(BaseCaching):
         if key is not None and item is not None:
             # Checks if key currently exists and deletes it with its value
             # to maintain LIFO order (so as to be readded with current value)
-            if key in self.cache_data.keys():
-                del self.cache_data[key]
+
 
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                last_key = list(self.cache_data.keys())[-1]
-                print('DISCARD: ', last_key)
-                del self.cache_data[last_key]
+                if key in self.cache_data.keys():
+                    del self.cache_data[key]
+                else:
+                    last_key = list(self.cache_data.keys())[-1]
+                    print('DISCARD: ', last_key)
+                    del self.cache_data[last_key]
 
             # Updates the cache_data with the current key and item
             self.cache_data[key] = item
