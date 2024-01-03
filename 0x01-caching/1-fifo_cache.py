@@ -13,7 +13,7 @@ class FIFOCache(BaseCaching):
         if key is not None and item is not None:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 # Creates an iterator using the keys in cache_data and uses
-                # next to retrieve the next item (the first item)
+                # next to retrieve the next item (the first/oldest item)
                 first_item_key = next(iter(self.cache_data))
                 del self.cache_data[first_item_key]
                 print("DISCARD: " + first_item_key)
