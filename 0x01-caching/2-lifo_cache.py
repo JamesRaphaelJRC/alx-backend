@@ -12,7 +12,8 @@ class LIFOCache(BaseCaching):
         '''
         if key is not None and item is not None:
             # Checks if key currently exists and deletes it with its value
-            # to maintain LIFO order (so as to be readded with current value)
+            # to maintain LIFO order (so as to be readded with current value
+            # and maintain the latest position)
             if key in self.cache_data.keys():
                 del self.cache_data[key]
 
