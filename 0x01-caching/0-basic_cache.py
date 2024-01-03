@@ -10,7 +10,7 @@ class BasicCache(BaseCaching):
         Updates the cache_data dictionary (inherited from BaseCaching)
         with new cache data
         '''
-        if key is not None or item is not None:
+        if key is not None and item is not None:
             self.cache_data.update({key: item})
 
     def get(self, key):
