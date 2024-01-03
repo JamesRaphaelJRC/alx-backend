@@ -16,9 +16,10 @@ class LIFOCache(BaseCaching):
             if key in self.cache_data.keys():
                 del self.cache_data[key]
 
+            # Checks if cache_data is at maximum capacity
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 last_key = list(self.cache_data.keys())[-1]
-                print('DISCARD: ', last_key)
+                print('DISCARD: ' + last_key)
                 del self.cache_data[last_key]
 
             # Updates the cache_data with the current key and item
