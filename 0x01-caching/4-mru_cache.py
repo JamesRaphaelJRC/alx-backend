@@ -28,9 +28,7 @@ class MRUCache(BaseCaching):
         ''' Retrieves the value/cache item from the cache_data dictionary
             using a given key
         '''
-        if key is not None and key in self.cache_data:
+        value = self.cache_data.get(key, None)
+        if key in self.cache_data:
             self.cache_data.move_to_end(key)
-            value = self.cache_data[key]
-        else:
-            value = None
         return value
