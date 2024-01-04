@@ -28,7 +28,6 @@ class LRUCache(BaseCaching):
                     print('DISCARD: ' + lru_item[0])
             self.cache_data[key] = item
 
-
     def get(self, key):
         ''' Retrieves the value/cache item from the cache_data dictionary
             using a given key
