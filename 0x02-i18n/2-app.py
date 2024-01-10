@@ -4,7 +4,14 @@ from flask_babel import Babel
 from flask import Flask, render_template, request
 
 app = Flask(__name__, template_folder='templates')
-babel = Babel(app)
+
+
+def get_locale() -> str:
+    ''' Get user's locale '''
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+babel = Babel(app, locale_selector=get_locale)
 
 
 class Config(object):
@@ -23,11 +30,6 @@ def helloWorld() -> str:
         Renders a template for Babel usage.
     '''
     return render_template('1-index.html')
-
-@babel.localeselector
-def get_locale() -> str:
-    ''' Get user's locale '''
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == '__main__':
