@@ -34,11 +34,12 @@ def get_user() -> Union[dict, None]:
     '''
         Get user from session as per variable.
     '''
-    try:
-        login_as = request.args.get('login_as', None)
+    login_as = request.args.get('login_as', None)
+    if login_as is not None:
         user = users[int(login_as)]
-    except Exception:
+    else:
         user = None
+    return user
 
 
 @app.before_request
