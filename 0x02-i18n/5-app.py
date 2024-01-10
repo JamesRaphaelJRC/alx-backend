@@ -36,7 +36,7 @@ def get_user() -> Union[dict, None]:
     '''
     login_as = request.args.get('login_as', None)
     if login_as is not None:
-        user = users[int(login_as)]
+        user = users.get(int(login_as), None)
     else:
         user = None
     return user
