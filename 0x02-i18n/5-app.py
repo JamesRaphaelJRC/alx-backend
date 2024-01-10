@@ -8,7 +8,16 @@ from flask import Flask, render_template, request, g
 from typing import Union
 
 app = Flask(__name__, template_folder='templates')
-babel = Babel(app)
+
+def get_locale() -> str:
+    '''
+        Gets user locale to serve matching translation.
+    '''
+    locale = request.args.get('locale')
+    if locale in app.config['LANGUAGES']:
+        return locale
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+babel = Babel(app, locale_selector=get_locale)
 
 
 class Config(object):
@@ -59,15 +68,6 @@ def helloWorld() -> str:
     return render_template('5-index.html')
 
 
-@babel.localeselector
-def get_locale() -> str:
-    '''
-        Gets user locale to serve matching translation.
-    '''
-    locale = request.args.get('locale')
-    if locale in app.config['LANGUAGES']:
-        return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == '__main__':
